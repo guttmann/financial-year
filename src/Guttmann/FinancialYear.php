@@ -68,6 +68,10 @@ class FinancialYear
         $startFinancialYear = self::get_by_date($rangeStart);
         $endFinancialYear = self::get_by_date($rangeEnd);
 
+        if ($startFinancialYear > $endFinancialYear) {
+            throw new \Exception('End date is before start date');
+        }
+
         $startYear = $startFinancialYear->getStartDate()->format('Y');
         $endYear = $endFinancialYear->getStartDate()->format('Y');
 

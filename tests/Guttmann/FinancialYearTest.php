@@ -70,4 +70,20 @@ class FinancialYearTest extends \PHPUnit_Framework_TestCase
         $this->checkFinancialYearRange(1, 2012, $financialYears);
     }
 
+    public function testGetByDateRangeWrongOrder()
+    {
+        $exceptionCaught = false;
+
+        try {
+            FinancialYear::get_by_date_range(
+                DateTime::createFromFormat('Y-m-d H:i:s', '2013-07-26 15:16:00'),
+                DateTime::createFromFormat('Y-m-d H:i:s', '2013-06-15 00:00:00')
+            );
+        } catch (\Exception $e) {
+            $exceptionCaught = true;
+        }
+
+        $this->assertTrue($exceptionCaught);
+    }
+
 }

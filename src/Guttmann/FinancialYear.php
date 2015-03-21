@@ -39,7 +39,7 @@ class FinancialYear
      * @param DateTime $date
      * @return FinancialYear
      */
-    public static function get_by_date(DateTime $date)
+    public static function getByDate(DateTime $date)
     {
         $month = $date->format('n');
         $year = $date->format('Y');
@@ -63,10 +63,10 @@ class FinancialYear
      * @param DateTime $rangeEnd
      * @return FinancialYear[]
      */
-    public static function get_by_date_range(DateTime $rangeStart, DateTime $rangeEnd)
+    public static function getByDateRange(DateTime $rangeStart, DateTime $rangeEnd)
     {
-        $startFinancialYear = self::get_by_date($rangeStart);
-        $endFinancialYear = self::get_by_date($rangeEnd);
+        $startFinancialYear = self::getByDate($rangeStart);
+        $endFinancialYear = self::getByDate($rangeEnd);
 
         if ($startFinancialYear > $endFinancialYear) {
             throw new \Exception('End date is before start date');
@@ -78,7 +78,7 @@ class FinancialYear
         $financialYears = array();
 
         for ($i = $startYear; $i <= $endYear; $i += 1) {
-            $financialYears[] = self::get_by_date(
+            $financialYears[] = self::getByDate(
                 DateTime::createFromFormat('Y-m-d H:i:s', $i . '-07-01 00:00:00')
             );
         }

@@ -9,7 +9,7 @@ class FinancialYearTest extends \PHPUnit_Framework_TestCase
 
     public function testGetByDatePostJuly()
     {
-        $financialYear = FinancialYear::get_by_date(DateTime::createFromFormat('Y-m-d H:i:s', '2013-07-26 15:16:00'));
+        $financialYear = FinancialYear::getByDate(DateTime::createFromFormat('Y-m-d H:i:s', '2013-07-26 15:16:00'));
 
         $this->checkFinancialYear(2013, $financialYear);
     }
@@ -22,14 +22,14 @@ class FinancialYearTest extends \PHPUnit_Framework_TestCase
 
     public function testGetByDatePreJuly()
     {
-        $financialYear = FinancialYear::get_by_date(DateTime::createFromFormat('Y-m-d H:i:s', '2013-06-26 15:16:00'));
+        $financialYear = FinancialYear::getByDate(DateTime::createFromFormat('Y-m-d H:i:s', '2013-06-26 15:16:00'));
 
         $this->checkFinancialYear(2012, $financialYear);
     }
 
     public function testGetByDateRangePostJuly()
     {
-        $financialYears = FinancialYear::get_by_date_range(
+        $financialYears = FinancialYear::getByDateRange(
             DateTime::createFromFormat('Y-m-d H:i:s', '2013-07-26 15:16:00'),
             DateTime::createFromFormat('Y-m-d H:i:s', '2016-03-26 15:16:00')
         );
@@ -52,7 +52,7 @@ class FinancialYearTest extends \PHPUnit_Framework_TestCase
 
     public function testGetByDateRangePreJuly()
     {
-        $financialYears = FinancialYear::get_by_date_range(
+        $financialYears = FinancialYear::getByDateRange(
             DateTime::createFromFormat('Y-m-d H:i:s', '2013-04-22 15:16:00'),
             DateTime::createFromFormat('Y-m-d H:i:s', '2016-07-26 15:16:00')
         );
@@ -62,7 +62,7 @@ class FinancialYearTest extends \PHPUnit_Framework_TestCase
 
     public function testGetByDateRangeOneYear()
     {
-        $financialYears = FinancialYear::get_by_date_range(
+        $financialYears = FinancialYear::getByDateRange(
             DateTime::createFromFormat('Y-m-d H:i:s', '2013-04-22 15:16:00'),
             DateTime::createFromFormat('Y-m-d H:i:s', '2013-04-26 15:16:00')
         );
@@ -75,7 +75,7 @@ class FinancialYearTest extends \PHPUnit_Framework_TestCase
         $exceptionCaught = false;
 
         try {
-            FinancialYear::get_by_date_range(
+            FinancialYear::getByDateRange(
                 DateTime::createFromFormat('Y-m-d H:i:s', '2013-07-26 15:16:00'),
                 DateTime::createFromFormat('Y-m-d H:i:s', '2013-06-15 00:00:00')
             );
